@@ -25,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController numEditingController = TextEditingController();
 
   String desc="No result";
+  String rate= "Result";
   var MYR, KRW, result, JPY, GBP, USD, EUR;
  
   String selectFrom = "EUR";
@@ -154,10 +155,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: Column(
                         children: [
-                          const Text("Result", style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.0,
-                            ) ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(rate,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 14.0,
+                              ) ),
+                          ),
+                          const SizedBox(height: 5),
                           Text(desc, style: const TextStyle(
                             color: Colors.blue,
                             fontSize: 30.0,
@@ -194,30 +200,31 @@ class _HomePageState extends State<HomePage> {
         }else{
           var num = double.parse(numEditingController.text);
 
-        if(selectTo == selectFrom){
-            result = num;
-            desc = result.toStringAsFixed(2);
-        }else{
             if(selectTo == "MYR"){
                 result = num * MYR;
+                rate = "1 "+selectFrom+ " equals to "+ MYR.toString() +" "+selectTo;
                 desc = "RM"+result.toStringAsFixed(2);
             }else if(selectTo == "GBP"){
                result = num * GBP;
+               rate = "1 "+selectFrom+ " equals to "+ GBP.toString() +" "+selectTo;
                desc = "£"+result.toStringAsFixed(2);
             }else if(selectTo == "JPY"){
                result = num * JPY;
+               rate = "1 "+selectFrom+ " equals to "+ JPY.toString() +" "+selectTo;
                desc = "JP¥"+result.toStringAsFixed(2);
             }else if(selectTo == "USD"){
                result = num * USD;
+               rate = "1 "+selectFrom+ " equals to "+ USD.toString() +" "+selectTo;
                desc = "US\$" +result.toStringAsFixed(2);
             }else if(selectTo == "KRW"){
                result = num * KRW;
+               rate = "1 "+selectFrom+ " equals to "+ KRW.toString() +" "+selectTo;
                desc = "₩"+result.toStringAsFixed(2);
             }else if(selectTo == "EUR"){
                result = num * EUR;
+               rate = "1 "+selectFrom+ " equals to "+ EUR.toString() +" "+selectTo;
                desc = "€"+result.toStringAsFixed(2);
             }   
-        }
       }
       }else{
           print("Failed");
